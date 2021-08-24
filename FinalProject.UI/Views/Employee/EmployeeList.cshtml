@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Core.Entity.Employee>
+
+
+<table class="table">
+    <thead>
+
+        <tr>
+            <th scope="col">Employee Id </th>
+            <th scope="col">Employee Name</th>
+            <th scope="col">Employee Code</th>
+            <th scope="col">Department</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Salary</th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        <tr>
+            <th scope="row">data.Id</th>
+
+            <th scope="row">NO ID</th>
+            <td>data.EmpName</td>
+            <td>data.EmpCode</td>
+            <td>data.DepartmentName</td>
+            <td>data.Gender</td>
+            <td>data.Salary</td>
+
+            <td><button onclick="deleteCandidate(2102)"  class=" btn btn-danger">Delete</button></td>
+        </tr>
+
+        @*@foreach (var data in Model)
+        {
+    <tr>
+        <th scope="row">@data.Id</th>
+
+        <th scope="row">NO ID</th>
+        <td>@data.EmpName</td>
+        <td>@data.EmpCode</td>
+        <td>@data.DepartmentName</td>
+        <td>@data.Gender</td>
+        <td>@data.Salary</td>
+    </tr>}*@
+
+    </tbody>
+</table>
+
+
+<script>
+    function deleteCandidate(id) {
+        if (confirm("Are you sure , you want to delete the Record.")) {
+            $.get("/Employee/DeleteEmployee", { id: id }, function (response) {
+                if (response) {
+                    alert("Record Deleted Successfully ..");
+                    location.reload();
+                }
+                else {
+                    alert("Unable to delete Data..");
+                }
+            });
+        }
+    }
+</script>
