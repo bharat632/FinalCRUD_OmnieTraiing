@@ -7,6 +7,8 @@ namespace Repository
 {
     public interface IEmployeeRepository
     {
+        Task<bool> CreateUser(AuthenticateModel model);
+        Task<bool> IsAuthenticate(AuthenticateModel model);
         Task<bool> CreateEmployee(Employee model);
         Task<bool> DeleteEmployee(int id);
         Task<bool> UpdateEmployee(Employee model);

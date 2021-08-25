@@ -17,6 +17,28 @@ namespace Implementation
             _connectionString = configuration.GetSection("ConnectionStrings:dbConnection").Value;
         }
 
+        public async Task<bool> CreateUser(AuthenticateModel model)
+        {
+            SqlParameter[] parameters =
+                {
+                new SqlParameter("@UserName",model.UserName),
+                new SqlParameter("@Password",model.Password)
+            };
+            var response = await SqlHelper.ExecuteNonQuery(_connectionString, SqlConstant.CreateUser, System.Data.CommandType.Text, parameters);
+            return Convert.ToInt32(response) > 0;
+        }
+
+        public async Task<bool> IsAuthenticate(AuthenticateModel model)
+        {
+            SqlParameter[] parameters =
+                {
+                new SqlParameter("@UserName",model.UserName),
+                new SqlParameter("@Password",model.Password)
+            };
+            var response = await SqlHelper.ExecuteScalar(_connectionString, SqlConstant.IsAuthenticate, System.Data.CommandType.Text, parameters);
+            return Convert.ToInt32(response) > 0;
+        }
+
         public async Task<bool> CreateEmployee(Employee model)
         {
             SqlParameter[] parameters =

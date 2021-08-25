@@ -1,5 +1,7 @@
 ﻿using Core.Entity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +11,28 @@ namespace FinalProject.UI.Controllers
 {
     public class AuthenticateController : Controller
     {
+        private readonly IEmployeeRepository _IAuthenticateRespository;
+        public AuthenticateController(IEmployeeRepository authenticateRepository)
+        {
+            _IAuthenticateRespository = authenticateRepository;
+        }
         public IActionResult Index()
         {
             return View("~/Views/Authenticate/Login.cshtml");
         }
-
         [HttpPost]
-        public IActionResult LoginUser(AuthenticateModel model)
+        public async Task<IActionResult> Login(AuthenticateModel model)
         {
-            return View("~/Views/Authenticate/Login.cshtml");
+            var response = await _IAuthenticateRespository.IsAuthenticate(model);
+            if (response)
+            {
+                HttpContext.Session.SetString("Username", model.UserName);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Authenticate");
+            }
         }
     }
 }

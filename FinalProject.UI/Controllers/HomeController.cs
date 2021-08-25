@@ -1,4 +1,5 @@
-﻿using FinalProject.UI.Models;
+﻿using FinalProject.UI.Helper;
+using FinalProject.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject.UI.Controllers
 {
+    [CustomAuthenticate]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
