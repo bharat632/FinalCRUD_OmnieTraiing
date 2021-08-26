@@ -23,7 +23,7 @@ namespace FinalProject.UI.Controllers
         {
             var response = await _IAuthenticateRepository.CreateUser(model);
             if(response)
-                return RedirectToAction("Index", "Authenticate");
+                return RedirectToAction("Index", "Home");
             return Json(response);
         }
     }

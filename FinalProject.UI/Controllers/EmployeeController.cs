@@ -41,10 +41,9 @@ namespace FinalProject.UI.Controllers
             return View("~/Views/Employee/CreateEmployee.cshtml");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateEmployee(Employee model , IFormFile EmpImage)
-        {
-
+        //[HttpPost]
+        //public async Task<IActionResult> CreateEmployee(Employee model, IFormFile EmpImage)
+        //{
             //var upload = Path.Combine(_IHostingEnvironment.WebRootPath, "ProfileImages\\");
             //using (FileStream fs = new FileStream(Path.Combine(upload , EmpImage.FileName ) , FileMode.Create))
             //{
@@ -52,6 +51,11 @@ namespace FinalProject.UI.Controllers
             //}
 
             //return Json("");
+        //}
+
+        [HttpPost]
+        public IActionResult CreateEmployee(Employee model )
+        {
 
             var response = _IEmployeeRepository.CreateEmployee(model);
             return View("~/Views/Employee/EmployeeList.cshtml");
