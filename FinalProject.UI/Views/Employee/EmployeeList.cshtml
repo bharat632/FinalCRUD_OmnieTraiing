@@ -16,7 +16,7 @@
     </thead>
     <tbody>
 
-        <tr>
+        @*<tr>
             <th scope="row">data.Id</th>
 
             <th scope="row">NO ID</th>
@@ -27,20 +27,20 @@
             <td>data.Salary</td>
 
             <td><button onclick="deleteCandidate(2102)"  class=" btn btn-danger">Delete</button></td>
-        </tr>
+        </tr>*@
 
-        @*@foreach (var data in Model)
+        @foreach (var data in Model)
         {
     <tr>
         <th scope="row">@data.Id</th>
-
-        <th scope="row">NO ID</th>
         <td>@data.EmpName</td>
         <td>@data.EmpCode</td>
         <td>@data.DepartmentName</td>
         <td>@data.Gender</td>
         <td>@data.Salary</td>
-    </tr>}*@
+
+        <td><button onclick="deleteCandidate(@data.Id)" class=" btn btn-danger">Delete</button></td>
+    </tr>}
 
     </tbody>
 </table>

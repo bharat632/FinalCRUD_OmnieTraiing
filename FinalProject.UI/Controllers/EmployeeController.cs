@@ -28,12 +28,11 @@ namespace FinalProject.UI.Controllers
             return View();
         }
 
-        public IActionResult EmployeeList()
+        [HttpGet]
+        public async Task<IActionResult> EmployeeList()
         {
-            //var response = _IEmployeeRepository.GetEmployee();
-            //return View("~/Views/Employee/EmployeeList.cshtml" , response);
-
-            return View("~/Views/Employee/EmployeeList.cshtml");
+            var response = await _IEmployeeRepository.GetEmployee();
+            return View("~/Views/Employee/EmployeeList.cshtml" , response);
         }
 
         public IActionResult EmployeeForm()
