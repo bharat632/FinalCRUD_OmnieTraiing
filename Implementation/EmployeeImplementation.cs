@@ -48,6 +48,7 @@ namespace Implementation
                 new SqlParameter("@gender", model.Gender),
                 new SqlParameter("@department", model.DepartmentName),
                 new SqlParameter("@salary", model.Salary),
+                new SqlParameter("@image", model.EmpImage)
             };
 
             var response = await SqlHelper.ExecuteNonQuery(_connectionString,

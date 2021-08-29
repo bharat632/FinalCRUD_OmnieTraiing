@@ -40,24 +40,17 @@ namespace FinalProject.UI.Controllers
             return View("~/Views/Employee/CreateEmployee.cshtml");
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> CreateEmployee(Employee model, IFormFile EmpImage)
-        //{
-            //var upload = Path.Combine(_IHostingEnvironment.WebRootPath, "ProfileImages\\");
-            //using (FileStream fs = new FileStream(Path.Combine(upload , EmpImage.FileName ) , FileMode.Create))
-            //{
-            //    await EmpImage.CopyToAsync(fs);
-            //}
-
-            //return Json("");
-        //}
-
         [HttpPost]
-        public IActionResult CreateEmployee(Employee model )
+        public async Task<IActionResult> CreateEmployee(Employee model, IFormFile EmpImage)
         {
-
+            var upload = Path.Combine(_IHostingEnvironment.WebRootPath, "ProfileImages//");
+            using (FileStream fs = new FileStream(Path.Combine(upload , EmpImage.FileName ) , FileMode.Create))
+            {
+                await EmpImage.CopyToAsync(fs);
+                model.EmpImage = fs.Name;
+            }
             var response = _IEmployeeRepository.CreateEmployee(model);
-            return View("~/Views/Employee/EmployeeList.cshtml");
+            return RedirectToAction("EmployeeList", "Employee");
         }
 
         public IActionResult DeleteEmployee(int id)

@@ -12,8 +12,8 @@ namespace Implementation.Helper
         
         public static string IsAuthenticate = @"select COUNT(1) from Authenticate Where UserName=@UserName and Password=@Password and IsActive=1 and IsDeleted=0";
 
-        public static string CreateEmployee = @"insert into Employee(EmpName, EmpCode, Gender, Department, Salary) 
-                                              values(@name, @code, @gender, @department, @salary)";
+        public static string CreateEmployee = @"insert into Employee(EmpName, EmpCode, Gender, Department, Salary , EmpImg) 
+                                              values(@name, @code, @gender, @department, @salary , @image)";
         public static string UpdateEmployee = @"Update Employee set EmpName=@name, EmpCode=@code, Gender=@gender, 
                                                DepartmentName=@department, Salary=@salary where EmpId=@id";
         public static string DeleteEmployee  = @"Delete from Employee where EmpId=@Id";
